@@ -1,6 +1,6 @@
 from email.message import EmailMessage
 
-def emailFormat():
+def emailFormat() -> EmailMessage:
     
     msg = EmailMessage()
 

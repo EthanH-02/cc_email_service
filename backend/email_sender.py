@@ -1,10 +1,9 @@
 import smtplib
-from email.message import EmailMessage
 
 import edit_content.sensative_info as sensative_info
 from message_former import emailFormat
 
-def email_sender():
+def email_sender() -> int:
     s = smtplib.SMTP('smtp.gmail.com', 587)
     s.starttls()
 
@@ -17,4 +16,4 @@ def email_sender():
     s.send_message(msg)
     s.quit()
     
-    print("Email sent")
+    return 0
