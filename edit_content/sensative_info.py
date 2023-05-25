@@ -5,4 +5,4 @@ LOGIN_EMAIL = ""
 LOGIN_PASSWORD = ""
 
 # Path to CSV to edit
-PATH_TO_CSV = ""
+CSV_FILENAME = ""
