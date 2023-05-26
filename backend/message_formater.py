@@ -1,4 +1,5 @@
 from typing import List
+from errors import checkNoCurlyBracesLeft
 
 import re
 
@@ -11,7 +12,9 @@ def formatMessage(msg:str, rcpnt:dict) -> str:
     for elem in elems:
         to_rplc = '{' + elem + '}'
         msg = re.sub(to_rplc, rcpnt[elem], msg)
-    
+
+    checkNoCurlyBracesLeft(msg, rgx_ptrn)
+
     ig_elems = re.findall(ig_rgx_ptrn, msg)
 
     for ig_elem in ig_elems:
