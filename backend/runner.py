@@ -17,7 +17,10 @@ def runner() -> int:
     for rcpnt in rcpnts:
         email = emailBuilder(rcpnt)
         s.send_message(email)
+        print('Sent email to: ' + rcpnt['email'])
 
     s.quit()
+
+    print('DONE: sent all emails')
     
     return 0
