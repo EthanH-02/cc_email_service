@@ -3,9 +3,13 @@ import smtplib
 import edit_content.sensative_info as sensative_info
 from backend.email_builder import emailBuilder
 from backend.csv_extractor import csvToDictList
-from backend.errors import checkFilledLogin
+from backend.errors import checkFilledLogin, checkEmailFormatted
 
 def runner() -> int:
+
+    checkFilledLogin()
+    checkEmailFormatted()
+
     s = smtplib.SMTP('smtp.gmail.com', 587)
     s.starttls()
 
