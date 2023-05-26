@@ -2,16 +2,15 @@ from typing import List
 
 import re
 
-def formatMessage(msg:str, key:List[str], row:List[str]) -> str:
+def formatMessage(msg:str, rcpnt:dict) -> str:
     rgx_ptrn = r'(?<!\\)\{(.*?)(?<!\\)\}'
     ig_rgx_ptrn = r'\\\{(.*?)\\\}'
 
     elems = [elem.lower() for elem in re.findall(rgx_ptrn, msg)]
 
     for elem in elems:
-        idx = key.index(elem)
         to_rplc = '{' + elem + '}'
-        msg = re.sub(to_rplc, row[idx], msg)
+        msg = re.sub(to_rplc, rcpnt[elem], msg)
     
     ig_elems = re.findall(ig_rgx_ptrn, msg)
 
