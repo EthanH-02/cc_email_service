@@ -1,3 +1,1 @@
-TO: to_email_address@gmail.com
-FROM: from_email_address@gmail.com
 SUBJECT: testing this technique works
