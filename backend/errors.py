@@ -11,10 +11,15 @@ def checkEmailKey(keys:List[str]):
     if "email" not in keys:
         raise Exception("CSV File does not contain the key 'email'\nEnsure the CSV has a column with title email")
 
-def checkNoCurlyBracesLeft(msg:str, rgx:str):
-    leftover = re.findall(rgx, msg)
-    if leftover:
-        raise Exception("Email contents contains variables that are empty " + leftover + "\nEdit the email or CSV")
+def checkNoCurlyBracesLeft(msg:str):
+    rgx = r"(?<!\\)\{[^{}]*\}(?!\\)"
+    rmndrs = re.findall(rgx, msg)
+    # print(rmndrs)
+    if len(rmndrs) != 0:
+        raise Exception("Leftover { } within the code: "
+                        + " ".join(rmndrs)
+                        + "\nEdit the message, include the fields or cancel out with \\{\\}")
+    
 
 def checkEmailFormatted():
     checkSubjectEntered()
