@@ -1,3 +1,5 @@
 # FILE IS BEING USED TO TEST PRACTIC SCRIPTS AND CODE IS FUNCTIONING AS EXPECTED
 
+from backend.runner import runner
 
+runner()

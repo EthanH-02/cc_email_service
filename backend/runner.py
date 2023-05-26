@@ -1,8 +1,8 @@
 import smtplib
 
 import edit_content.sensative_info as sensative_info
-from email_builder import emailBuilder
-from csv_extractor import csvToDictList
+from backend.email_builder import emailBuilder
+from backend.csv_extractor import csvToDictList
 
 def runner() -> int:
     s = smtplib.SMTP('smtp.gmail.com', 587)
@@ -10,7 +10,7 @@ def runner() -> int:
 
     s.login(sensative_info.LOGIN_EMAIL, sensative_info.LOGIN_PASSWORD)
     
-    rcpnts = csvToDictList
+    rcpnts = csvToDictList()
 
     for rcpnt in rcpnts:
         email = emailBuilder(rcpnt)
