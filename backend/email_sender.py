@@ -1,7 +1,7 @@
 import smtplib
 
 import edit_content.sensative_info as sensative_info
-from message_former import emailFormat
+from email_builder import emailBuilder
 
 def email_sender() -> int:
     s = smtplib.SMTP('smtp.gmail.com', 587)
@@ -10,7 +10,7 @@ def email_sender() -> int:
     s.login(sensative_info.LOGIN_EMAIL, sensative_info.LOGIN_PASSWORD)
     
     # Create the message to be sent
-    msg = emailFormat
+    msg = emailBuilder('', '', '')
     
     # SEND THE MESSAGE
     s.send_message(msg)
