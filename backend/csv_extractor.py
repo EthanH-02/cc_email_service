@@ -1,5 +1,8 @@
 import csv
 import edit_content.sensative_info as sensative_info
+
+from backend.errors import checkEmailKey
+
 from typing import List
 
 def csvToDictList() -> List[dict]:
@@ -10,6 +13,7 @@ def csvToDictList() -> List[dict]:
         reader = csv.reader(csvfile)
         
         keys = [x.lower() for x in next(reader)]
+        checkEmailKey(keys)
 
         for row in reader:
             row_dict = dict()
