@@ -1,18 +1,23 @@
-# cc_email_service
+# CompClub Emailing Service
 
-## about_this_project
+## About this Project
 Writting the implementation and structure of code to be utilised by the CompClub team in sending out emails about upcoming events and information.
 
 The cause of this problem was the factor that the optional service's subscription model's are not sustainable enough for us to utilise as a society considerign the limited budget we posses as a charity organisation that runs free workshops.
 
 The code works with gmail in order to be able to send mass emails about upcoming events within the program.
 
-## Version history
+## Version History
+- ```v0.0.1``` Implemented error checks and basic terminal feedback to ensure that the user is sending the information that they wish to send
+    - Ensures user is signed in
+    - Ensures user has implemented a link to a CSV file which has an email field
+    - Ensures user has put edits into the document and isn't about to send an empty email out
+    - Provides output of the email: sender, recipients, subject, content and asks for confirmation before sending
+    - Provides output as each email is sent such that for longer services we can avoid worrying about the project crashing halfway through
+    - Provides output when all emails are sent
 - ```v0.0.0``` Basic functionality of code implemented able to be used to send a text file that can be edited within the project
 
-## how_to_use
-> NOTE: :warning: the CSV file will need column titles and must maintain a field labelled email otherwise it will not work
-
+## How To Use
 1. Create a copy of the code on your local device
 2. Within the directory ```./edit_content``` there are 3 files
     - ```./edit_content/email_info.txt```
@@ -28,11 +33,12 @@ The code works with gmail in order to be able to send mass emails about upcoming
 
 > NOTE: within ```./edit_content/email_contents.txt``` you can add custom edits to the email by utilising { } and putting the column title in between the braces. i.e. "Hello {name}" would be changed to "Hello John" in the email.
 
-## goals
-- [x] ~~Create a basic service that can send an email~~ Achieved: 23-05-2023
-- [x] ~~Create a service that can iterate through a list of emails to send them off~~ Achieved: 26-05-2023
-- [ ] Implement error messages to ensure code functions as expected
+## Goals
+- [x] ~~Create a basic service that can send an email~~ ```Achieved: 23-05-2023```
+- [x] ~~Create a service that can iterate through a list of emails to send them off~~ ```Achieved: 26-05-2023```
+- [x] ~~Implement error messages to ensure code functions as expected~~ ```Achieved: 27-05-2023```
 - [ ] Schedule sending emails
+- [ ] Implement the ability to send files within the email service
 - [ ] Utilise the code in sending workshop information
 - [ ] Send emails with bold, italics, underline and colour formatting
 - [ ] Implement a front end to be utilised by the team so they don't have to worry about touching this GitHub

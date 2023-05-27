@@ -1,17 +1,17 @@
 from typing import List
+from backend.errors import checkNoCurlyBracesLeft
 
 import re
 
 def formatMessage(msg:str, rcpnt:dict) -> str:
-    rgx_ptrn = r'(?<!\\)\{(.*?)(?<!\\)\}'
     ig_rgx_ptrn = r'\\\{(.*?)\\\}'
 
-    elems = [elem.lower() for elem in re.findall(rgx_ptrn, msg)]
+    keys = [elem.lower() for elem in list(rcpnt.keys())]
 
-    for elem in elems:
-        to_rplc = '{' + elem + '}'
-        msg = re.sub(to_rplc, rcpnt[elem], msg)
-    
+    for key in keys:
+        to_rplc = '{' + key + '}'
+        msg = re.sub(to_rplc, rcpnt[key], msg)
+
     ig_elems = re.findall(ig_rgx_ptrn, msg)
 
     for ig_elem in ig_elems:
