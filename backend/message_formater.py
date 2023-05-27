@@ -12,8 +12,6 @@ def formatMessage(msg:str, rcpnt:dict) -> str:
         to_rplc = '{' + key + '}'
         msg = re.sub(to_rplc, rcpnt[key], msg)
 
-    checkNoCurlyBracesLeft(msg)
-
     ig_elems = re.findall(ig_rgx_ptrn, msg)
 
     for ig_elem in ig_elems:

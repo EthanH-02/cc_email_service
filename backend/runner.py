@@ -4,12 +4,13 @@ import edit_content.sensative_info as sensative_info
 from backend.email_builder import emailBuilder
 from backend.csv_extractor import csvToDictList
 from backend.email_confirmation import emailConfirmation
-from backend.errors import checkFilledLogin, checkEmailFormatted
+from backend.errors import checkFilledLogin, checkEmailFormatted, checkNoCurlyBracesLeft
 
 def runner() -> int:
 
     checkFilledLogin()
     checkEmailFormatted()
+    checkNoCurlyBracesLeft()
 
     s = smtplib.SMTP('smtp.gmail.com', 587)
     s.starttls()

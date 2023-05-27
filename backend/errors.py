@@ -1,4 +1,5 @@
 import re
+import csv
 
 from typing import List
 import edit_content.sensative_info as sensative_info
@@ -11,14 +12,28 @@ def checkEmailKey(keys:List[str]):
     if "email" not in keys:
         raise Exception("CSV File does not contain the key 'email'\nEnsure the CSV has a column with title email")
 
-def checkNoCurlyBracesLeft(msg:str):
-    rgx = r"(?<!\\)\{[^{}]*\}(?!\\)"
-    rmndrs = re.findall(rgx, msg)
-    # print(rmndrs)
-    if len(rmndrs) != 0:
-        raise Exception("Leftover { } within the code: "
-                        + " ".join(rmndrs)
-                        + "\nEdit the message, include the fields or cancel out with \\{\\}")
+def checkNoCurlyBracesLeft():
+
+    rgx = r'(?<!\\)\{[^{}]*\}(?!\\)'
+    not_pres = []
+
+    with open(sensative_info.CSV_FILENAME, 'r') as csv_file:
+        keys = ['{' + x.lower() +'}' for x in next(csv.reader(csv_file))]
+
+    with open('./edit_content/email_contents.txt', 'r') as content_file:
+        variables = re.findall(rgx, content_file.read())
+
+    print(keys)
+    print(variables)
+
+    for variable in variables:
+        if variable not in keys:
+            not_pres.append(variable)
+    
+    if not_pres:
+        raise Exception("Leftover { } within the code:\n\t"
+            + '\n\t'.join(not_pres)
+            + "\nEdit the message, include the fields or cancel out with \\{\\}")
     
 
 def checkEmailFormatted():
