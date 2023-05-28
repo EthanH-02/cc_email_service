@@ -1,13 +1,13 @@
 from email.message import EmailMessage
-from backend.message_formater import formatMessage
+from backend.message_formatter import formatMessage
 from backend.files_builder import getFilesInfo
-import edit_content.sensative_info as sensative_info
+import edit_content.sensitive_info as sensitive_info
 
 def emailBuilder(rcpnt:dict) -> EmailMessage:
     
     msg = EmailMessage()
 
-    msg["From"] = sensative_info.LOGIN_EMAIL
+    msg["From"] = sensitive_info.LOGIN_EMAIL
     msg["To"] = rcpnt['email']
 
     # Extract the information regarding the email
