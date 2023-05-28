@@ -46,3 +46,7 @@ def checkContentEntered():
     with open('./edit_content/email_contents.txt', 'r') as file:
         if not file.read():
             raise Exception("Email does not contain content\nEnter content into ./edit_content/email_contents.txt")
+        
+def checkSubtypeDeterminable(subtype:str):
+    if not subtype:
+        raise Exception("Unable to determine file subtype\nEnsure all attachments have a . then filetype")
