@@ -8,6 +8,9 @@ The cause of this problem was the factor that the optional service's subscriptio
 The code works with gmail in order to be able to send mass emails about upcoming events within the program.
 
 ## Version History
+- ```v0.1.0``` Implemented the ability to share files through the email & bug fixes
+    - Can share multiple files within the program by inserting them into the directory: ```./edit_content/files```
+    - Bug fixes resolving a problem in which variables were not being changed in the emails content
 - ```v0.0.1``` Implemented error checks and basic terminal feedback to ensure that the user is sending the information that they wish to send
     - Ensures user is signed in
     - Ensures user has implemented a link to a CSV file which has an email field
@@ -29,7 +32,8 @@ The code works with gmail in order to be able to send mass emails about upcoming
 7. Change the value of ```CSV_FILENAME``` to the path to the CSV file you have implemented within ```./edit_content/sensative_info.py```
 8. Switch into ```./edit_content/email_info.txt``` and write your subject header file
 9. Switch into ```./edit_content/email_contents.txt``` and write the message for your email
-10. Open a terminal in the directory and run ```./main.py```
+10. Add any files you wish to send in the email into the directory ```./edit_content/files```
+11. Open a terminal in the directory and run ```./main.py```
 
 > NOTE: within ```./edit_content/email_contents.txt``` you can add custom edits to the email by utilising { } and putting the column title in between the braces. i.e. "Hello {name}" would be changed to "Hello John" in the email.
 
@@ -37,8 +41,8 @@ The code works with gmail in order to be able to send mass emails about upcoming
 - [x] ~~Create a basic service that can send an email~~ ```Achieved: 23-05-2023```
 - [x] ~~Create a service that can iterate through a list of emails to send them off~~ ```Achieved: 26-05-2023```
 - [x] ~~Implement error messages to ensure code functions as expected~~ ```Achieved: 27-05-2023```
+- [x] ~~Implement the ability to send files within the email service~~ ```Achieved: 28-05-2023```
 - [ ] Schedule sending emails
-- [ ] Implement the ability to send files within the email service
 - [ ] Utilise the code in sending workshop information
 - [ ] Send emails with bold, italics, underline and colour formatting
 - [ ] Implement a front end to be utilised by the team so they don't have to worry about touching this GitHub
