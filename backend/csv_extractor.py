@@ -9,7 +9,7 @@ def csvToDictList() -> List[dict]:
 
     rows = []
 
-    with open(sensative_info.CSV_FILENAME, "r") as csvfile:
+    with open(sensative_info.CSV_FILENAME, "r", encoding='utf-8-sig') as csvfile:
         reader = csv.reader(csvfile)
         
         keys = [x.lower() for x in next(reader)]

@@ -17,14 +17,11 @@ def checkNoCurlyBracesLeft():
     rgx = r'(?<!\\)\{[^{}]*\}(?!\\)'
     not_pres = []
 
-    with open(sensative_info.CSV_FILENAME, 'r') as csv_file:
-        keys = ['{' + x.lower() +'}' for x in next(csv.reader(csv_file))]
+    with open(sensative_info.CSV_FILENAME, 'r', encoding='utf-8-sig') as csv_file:
+        keys = ['{' + x.lower() + '}' for x in next(csv.reader(csv_file))]
 
     with open('./edit_content/email_contents.txt', 'r') as content_file:
-        variables = re.findall(rgx, content_file.read())
-
-    print(keys)
-    print(variables)
+        variables = [x.lower() for x in re.findall(rgx, content_file.read())]
 
     for variable in variables:
         if variable not in keys:

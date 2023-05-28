@@ -17,4 +17,8 @@ def emailBuilder(rcpnt:dict) -> EmailMessage:
     with open('./edit_content/email_contents.txt', 'r') as content_file:
         msg.set_content(formatMessage(content_file.read(), rcpnt))
 
+    with open('./edit_content/file.jpg', 'rb') as file:
+        content = file.read()
+        msg.add_attachment(content, maintype='application', subtype='jpg', filename='file.jpg')
+
     return msg
