@@ -1,6 +1,6 @@
 import smtplib
 
-import edit_content.sensative_info as sensative_info
+import edit_content.sensitive_info as sensitive_info
 from backend.email_builder import emailBuilder
 from backend.csv_extractor import csvToDictList
 from backend.email_confirmation import emailConfirmation
@@ -16,7 +16,7 @@ def runner() -> int:
     s.starttls()
 
     checkFilledLogin()
-    s.login(sensative_info.LOGIN_EMAIL, sensative_info.LOGIN_PASSWORD)
+    s.login(sensitive_info.LOGIN_EMAIL, sensitive_info.LOGIN_PASSWORD)
     
     rcpnts = csvToDictList()
 
