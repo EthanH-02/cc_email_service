@@ -1,8 +1,7 @@
-import copy
 import smtplib
 
 from backend.csv_extractor import csvToDictList
-from backend.email_builder import genericEmailBuilder, personalEmailBuilder
+from backend.email_builder import emailBuilder
 from backend.email_confirmation import emailConfirmation
 from backend.errors import checkReadyForStartUp
 from backend.files_builder import getFilesInfo
@@ -19,9 +18,8 @@ def runner() -> int:
     # Unpack the csv file
     rcpnts = csvToDictList()
 
-    # Create the generic format for the email
+    # Create the generic message type to be used
     files_info = getFilesInfo()
-    generic_email = genericEmailBuilder(files_info)
     with open('./edit_content/email_contents.txt', 'r') as content_file:
         generic_message = genericMessageFormatter(content_file.read())
 
@@ -34,8 +32,7 @@ def runner() -> int:
 
     # Send a message for each recipient
     for rcpnt in rcpnts:
-        personal_email = personalEmailBuilder(generic_message, rcpnt, files_info)
-        s.send_message(personal_email)
+        s.send_message(emailBuilder(generic_message, rcpnt, files_info))
         print('Sent email to: ' + rcpnt['email'])
 
     # Quit the email service and print a message as feedback
