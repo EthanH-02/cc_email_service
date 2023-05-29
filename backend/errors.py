@@ -21,7 +21,6 @@ def checkEmailKey(keys:List[str]):
 def checkNoCurlyBracesLeft():
 
     rgx = r'(?<!\\)\{[^{}]*\}(?!\\)'
-    not_pres = []
 
     with open(sensitive_info.CSV_FILENAME, 'r', encoding='utf-8-sig') as csv_file:
         keys = ['{' + x.lower() + '}' for x in next(csv.reader(csv_file))]
@@ -29,9 +28,7 @@ def checkNoCurlyBracesLeft():
     with open('./edit_content/email_contents.txt', 'r') as content_file:
         variables = [x.lower() for x in re.findall(rgx, content_file.read())]
 
-    for variable in variables:
-        if variable not in keys:
-            not_pres.append(variable)
+    not_pres = [variable for variable in variables if variable not in keys]
     
     if not_pres:
         raise Exception('Leftover { } within the code:\n\t'
@@ -59,11 +56,11 @@ def checkContentEntered():
             raise Exception('Email does not contain content\nEnter content into ./edit_content/email_contents.txt')
 
 
-
 def checkSubtypeDeterminable(subtype:str):
     if not subtype:
         raise Exception('Unable to determine file subtype\nEnsure all attachments have a . then filetype')
     
+
 
 def checkReadyForStartUp():
     checkFilledLogin()

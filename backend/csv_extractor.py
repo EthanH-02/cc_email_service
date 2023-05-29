@@ -13,7 +13,7 @@ import edit_content.sensitive_info as sensitive_info
 # Parameters:
 #   - N/A
 # Return:
-#   - rows  List[Dict]: each  entry  corresponds to a row, with
+#   - N/A   List[Dict]: each  entry  corresponds to a row, with
 #                       dictionary keys being the cols & values
 #                       matching the row values for the col
 # Time Complexity:
@@ -22,8 +22,6 @@ import edit_content.sensitive_info as sensitive_info
 #       - n: number of rows in CSV file
 def csvToDictList() -> List[dict]:
 
-    rows = []
-
     with open(sensitive_info.CSV_FILENAME, 'r', encoding='utf-8-sig') as csvfile:
         reader = csv.reader(csvfile)
         
@@ -31,11 +29,8 @@ def csvToDictList() -> List[dict]:
         keys = [x.lower() for x in next(reader)]
         checkEmailKey(keys)
 
-        # Iterate over each row, form the dict and append it to the return list
-        for row in reader:
-            rows.append(makeDictFromRow(keys, row))
-
-    return rows
+        # Return the corresponding list of dictionaries from the row
+        return [makeDictFromRow(keys, row) for row in reader]
 
 
 

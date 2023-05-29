@@ -15,28 +15,30 @@ def runner() -> int:
     # Run only if the code is redy to go
     checkReadyForStartUp()
 
+    # Unpack the csv file
+    rcpnts = csvToDictList()
+
     # Create the generic format for the email
     files_info = getFilesInfo()
     generic_email = genericEmailBuilder(files_info)
     with open('./edit_content/email_contents.txt', 'r') as content_file:
         generic_message = genericMessageFormatter(content_file.read())
 
-    rcpnts = csvToDictList()
-
     emailConfirmation([rcpnt['email'] for rcpnt in rcpnts], [file.filename for file in files_info])
 
+    # Sign into smtplib
     s = smtplib.SMTP('smtp.gmail.com', 587)
     s.starttls()
-
     s.login(sensitive_info.LOGIN_EMAIL, sensitive_info.LOGIN_PASSWORD)
 
+    # Send a message for each recipient
     for rcpnt in rcpnts:
         personal_email = personalEmailBuilder(generic_message, rcpnt, generic_email)
         s.send_message(personal_email)
         print('Sent email to: ' + rcpnt['email'])
 
+    # Quit the email service and print a message as feedback
     s.quit()
-
     print('DONE: sent all emails')
     
     return 0

@@ -1,5 +1,6 @@
 from typing import List
 from email.message import EmailMessage
+from email.mime.text import MIMEText
 
 from backend.message_formatter import personalMessageFormatter
 from backend.files_builder import File_Info
@@ -29,9 +30,8 @@ def genericEmailBuilder(files_info: List[File_Info]) -> EmailMessage:
 
     # Attach files within ./edit_content/files
     for file_info in files_info:
-        with open(file_info.filepath, 'rb') as file:
-            content = file.read()
-            msg.add_attachment(content, maintype='application', subtype=file_info.subtype, filename=file_info.filename)
+        msg.add_attachment(file_info.content, maintype='application',
+                           subtype=file_info.subtype, filename=file_info.filename)
 
     return msg
 
@@ -53,6 +53,6 @@ def personalEmailBuilder(generic_cont:str, rcpnt:dict, msg:EmailMessage) -> Emai
     msg['To'] = rcpnt['email'] 
  
     # Set the content of the file to be personalised
-    msg.set_content(personalMessageFormatter(generic_cont, rcpnt))
+    msg.attach(MIMEText(personalMessageFormatter(generic_cont, rcpnt)))
 
     return msg

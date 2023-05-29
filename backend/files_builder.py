@@ -13,9 +13,11 @@ PATH_TO_FILES = './edit_content/files'
 #   utilised in file attachments
 class File_Info:
     def __init__(self, filename:str):
-        self.filename = filename
-        self.filepath = (os.path.join(PATH_TO_FILES, filename))
-        self.subtype  = extractSubtype(self.filepath)
+        self.filename   = filename
+        self.filepath   = (os.path.join(PATH_TO_FILES, filename))
+        self.subtype    = extractSubtype(self.filepath)
+        with open(self.filepath, 'rb') as file:
+            self.content    = file.read()
 
 
 
