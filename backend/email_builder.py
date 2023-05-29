@@ -2,8 +2,8 @@ from typing import List
 from email.message import EmailMessage
 from email.mime.text import MIMEText
 
-from backend.message_formatter import personalMessageFormatter
 from backend.files_builder import File_Info
+from backend.message_formatter import personalMessageFormatter
 import edit_content.sensitive_info as sensitive_info
 
 

@@ -31,9 +31,7 @@ def genericMessageFormatter(msg:str) -> str:
 #       - n: length of msg string
 def personalMessageFormatter(msg:str, rcpnt:dict) -> str:
 
-    keys = [elem.lower() for elem in list(rcpnt.keys())]
-
-    for key in keys:
+    for key in [elem.lower() for elem in list(rcpnt.keys())]:
         to_rplc = r'\{' + key + r'\}'
         msg = re.sub(to_rplc, rcpnt[key], msg)
     

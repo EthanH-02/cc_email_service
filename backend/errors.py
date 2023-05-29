@@ -1,5 +1,4 @@
-import re
-import csv
+import re, csv
 from typing import List
 
 import edit_content.sensitive_info as sensitive_info

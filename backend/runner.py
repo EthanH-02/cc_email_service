@@ -1,11 +1,11 @@
 import smtplib
 
-from backend.email_builder import genericEmailBuilder, personalEmailBuilder
 from backend.csv_extractor import csvToDictList
+from backend.email_builder import genericEmailBuilder, personalEmailBuilder
 from backend.email_confirmation import emailConfirmation
-from backend.message_formatter import genericMessageFormatter
-from backend.files_builder import getFilesInfo
 from backend.errors import checkReadyForStartUp
+from backend.files_builder import getFilesInfo
+from backend.message_formatter import genericMessageFormatter
 import edit_content.sensitive_info as sensitive_info
 
 
