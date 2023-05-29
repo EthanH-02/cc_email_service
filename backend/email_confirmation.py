@@ -19,12 +19,16 @@ def emailConfirmation(rcpnt_emails:List[str], filenames:List[str]):
 
     # Print information relating to the sender, to and subject
     print(f'SENDER: {sensitive_info.LOGIN_EMAIL}')
-    print(f'TO:\n' + '\n\t'.join(rcpnt_emails))
+    print(f'TO:\n' + '\n'.join("\t" + rcpnt_email for rcpnt_email in rcpnt_emails))
     with open('./edit_content/email_info.txt', 'r') as info_file:
         print(f'SUBJECT: {" ".join(info_file.readline().split()[1:])}')
 
     # Print the filenames for each attachment to be sent
-    print(f'Attachments:\n' + '\n\t'.join(filenames))
+    print(f'Attachments:')
+    if filenames:
+        print('\n'.join("\t" + filename for filename in filenames))
+    else:
+        print('\tN/A')
 
     print()
 

@@ -30,7 +30,7 @@ class File_Info:
 #   - O(n)
 #       - n: number of attachements
 def getFilesInfo() -> List[File_Info]:
-    return [File_Info(filename) for filename in os.listdir(PATH_TO_FILES)]
+    return [File_Info(filename) for filename in os.listdir(PATH_TO_FILES) if filename != '.gitkeep']
 
 
 
