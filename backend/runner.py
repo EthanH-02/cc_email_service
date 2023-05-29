@@ -1,3 +1,4 @@
+import copy
 import smtplib
 
 from backend.csv_extractor import csvToDictList
@@ -33,7 +34,7 @@ def runner() -> int:
 
     # Send a message for each recipient
     for rcpnt in rcpnts:
-        personal_email = personalEmailBuilder(generic_message, rcpnt, generic_email)
+        personal_email = personalEmailBuilder(generic_message, rcpnt, files_info)
         s.send_message(personal_email)
         print('Sent email to: ' + rcpnt['email'])
 

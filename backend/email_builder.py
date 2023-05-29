@@ -1,3 +1,4 @@
+import copy
 from typing import List
 from email.message import EmailMessage
 from email.mime.text import MIMEText
@@ -47,12 +48,27 @@ def genericEmailBuilder(files_info: List[File_Info]) -> EmailMessage:
 #                           containing a recipent and customised content
 # Time Complexity:
 #   - O(1)
-def personalEmailBuilder(generic_cont:str, rcpnt:dict, msg:EmailMessage) -> EmailMessage:
+def personalEmailBuilder(generic_cont:str, rcpnt:dict,
+                         files_info: List[File_Info]) -> EmailMessage:
 
-    # Set the recipent of the email
-    msg['To'] = rcpnt['email'] 
- 
-    # Set the content of the file to be personalised
-    msg.attach(MIMEText(personalMessageFormatter(generic_cont, rcpnt)))
+    msg = EmailMessage()
+
+    # Copy the necessary attributes from the original msg
+    msg['From'] = sensitive_info.LOGIN_EMAIL
+    msg['To'] = rcpnt['email']
+    with open('./edit_content/email_info.txt', 'r') as info_file:
+        msg['Subject'] = ' '.join(info_file.readline().split()[1:])
+
+    for file_info in files_info:
+        msg.add_attachment(file_info.content, maintype='application',
+                           subtype=file_info.subtype, filename=file_info.filename)
+
+
+    # Create a new MIMEText object for the personalized content
+    personalized_content = personalMessageFormatter(generic_cont, rcpnt)
+    text_part = MIMEText(personalized_content, 'plain')
+
+    # Add the text_part to the msg
+    msg.attach(text_part)
 
     return msg
