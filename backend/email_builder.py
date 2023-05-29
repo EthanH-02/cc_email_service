@@ -37,6 +37,6 @@ def emailBuilder(generic_cont:str, rcpnt:dict,
     personalized_content = personalMessageFormatter(generic_cont, rcpnt)
 
     # Add the text_part to the msg
-    msg.set_content(personalized_content)
+    msg.attach(MIMEText(personalized_content, 'plain'))
 
     return msg
