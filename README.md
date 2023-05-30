@@ -69,6 +69,8 @@ Hello Elijah Wood, I really enjoyed your potrayal of Frodo Baggins. It capsured 
 ```
 
 ## Version History <a name="History"></a>
+- ```v0.1.2``` Bug Fixes
+    - Fixed bug in which emails were only being sent to the first user and crashing
 - ```v0.1.1``` Optimisation & Refactoring Patch
     - Code functions faster by precomputing generic parts of the email before attaching more specifics
     - Backend cleaned up for smoother easier to understand
